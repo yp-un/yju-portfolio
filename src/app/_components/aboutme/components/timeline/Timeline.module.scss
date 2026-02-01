@@ -56,6 +56,22 @@
   }
 }
 
+.more {
+  height: 90px;
+  overflow: hidden;
+}
+
+.moreBtn {
+  background-color: transparent;
+  border: none;
+  margin-top: 10px;
+  opacity: 0.7;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
 .lineContaier {
   width: 100px;
   display: flex;
