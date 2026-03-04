@@ -10,7 +10,7 @@ const data: Project[] = [
     src: "/chrome-extension/main.gif",
     images: ["/chrome-extension/main.gif"],
     introduce: "사람인 크롬 익스텐션",
-    github: { owner: "yponion", repo: "saramin-auto-input-portfolio" },
+    github: { owner: "yp-un", repo: "saramin-auto-input-portfolio" },
   },
   {
     title: "Transfer",
@@ -26,7 +26,7 @@ const data: Project[] = [
       "/transfer/m-04.PNG",
     ],
     introduce: "기차 환승",
-    github: { owner: "yponion", repo: "transfer" },
+    github: { owner: "yp-un", repo: "transfer" },
   },
   {
     title: "yju-portfolio",
@@ -46,7 +46,7 @@ const data: Project[] = [
       "/portfolio/m6.jpg",
     ],
     introduce: "포트 폴리오",
-    github: { owner: "yponion", repo: "yju-portfolio" },
+    github: { owner: "yp-un", repo: "yju-portfolio" },
   },
   {
     title: "Qcraft",
@@ -68,7 +68,7 @@ const data: Project[] = [
     src: "/project-pulse-be.png",
     images: [],
     introduce: "프로젝트 관리",
-    github: { owner: "yponion", repo: "ProjectManagement" },
+    github: { owner: "yp-un", repo: "ProjectManagement" },
   },
   {
     title: "Project Pulse FE",
@@ -76,7 +76,7 @@ const data: Project[] = [
     src: "/project-pulse-fe.png",
     images: [],
     introduce: `프로젝트 관리`,
-    github: { owner: "yponion", repo: "ProjectManagement" },
+    github: { owner: "yp-un", repo: "ProjectManagement" },
   },
 ];
 
