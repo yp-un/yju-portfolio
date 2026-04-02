@@ -68,7 +68,7 @@ const data: Project[] = [
     src: "/project-pulse-be.png",
     images: [],
     introduce: "프로젝트 관리",
-    github: { owner: "yp-un", repo: "ProjectManagement" },
+    github: { owner: "yp-un", repo: "ProjectPulse" },
   },
   {
     title: "Project Pulse FE",
@@ -76,7 +76,7 @@ const data: Project[] = [
     src: "/project-pulse-fe.png",
     images: [],
     introduce: `프로젝트 관리`,
-    github: { owner: "yp-un", repo: "ProjectManagement" },
+    github: { owner: "yp-un", repo: "ProjectPulse" },
   },
 ];
 
