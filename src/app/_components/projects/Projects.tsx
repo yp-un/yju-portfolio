@@ -7,8 +7,8 @@ const data: Project[] = [
   {
     title: "Shathing",
     skills: ["Next.js", "Spring Boot", "WebSocket", "PostgreSQL"],
-    thumbnail: "/shthing/1.webp",
-    images: ["/shthing/1.webp", "/shthing/2.webp", "/shthing/3.webp", "/shthing/4.webp"],
+    thumbnail: "/shathing/1.webp",
+    images: ["/shathing/1.webp", "/shathing/2.webp", "/shathing/3.webp", "/shathing/4.webp"],
     introduce: "물건 공유 플랫폼",
     githubUrl: "https://github.com/orgs/shathing/repositories",
     serviceUrl: "https://shathing.shop",
