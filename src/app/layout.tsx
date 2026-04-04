@@ -27,10 +27,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  modal,
+  projectModal,
 }: Readonly<{
   children: React.ReactNode;
-  modal: React.ReactNode;
+  projectModal: React.ReactNode;
 }>) {
   return (
     <html lang="ko">
@@ -47,7 +47,7 @@ export default function RootLayout({
         <footer>
           <Footer />
         </footer>
-        <Suspense fallback={<Loading />}>{modal}</Suspense>
+        <Suspense fallback={<Loading />}>{projectModal}</Suspense>
       </body>
     </html>
   );

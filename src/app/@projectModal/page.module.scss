@@ -50,8 +50,15 @@
   }
 }
 
-.imgBox {
-  // height: 400px;
+.iframeBox {
+  height: 400px;
+  width: 100%;
+  padding: 30px;
+  iframe {
+    height: 100%;
+    width: 100%;
+    border-style: none;
+  }
 }
 
 .img {
@@ -69,7 +76,13 @@
 
 .foot {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 10px 0 10px;
+}
+
+.flex {
+  display: flex;
 }
 
 .moveText {
@@ -109,6 +122,11 @@
     width: 20px;
     height: 20px;
   }
+}
+
+.serviceLink {
+  color: blue;
+  text-decoration: underline;
 }
 
 .link {

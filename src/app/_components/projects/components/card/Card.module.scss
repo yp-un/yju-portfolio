@@ -15,11 +15,11 @@
   &:hover .img {
     transform: scale(1.1);
   }
-  &:hover .skills {
+  &:hover .introduce {
     transform: translateY(-20px);
     opacity: 0;
   }
-  &:hover .more {
+  &:hover .skills {
     transform: translateY(-20px);
     opacity: 1;
   }
@@ -59,15 +59,25 @@
   @include overText;
 }
 
-.skills {
+.introduce {
   @include overText;
   opacity: 1;
   transition: all 0.3s ease;
   padding-top: 10px;
 }
 
-.more {
+.skills {
   @include overText;
   opacity: 0;
   transition: all 0.3s ease;
+  font-size: x-small;
+
+  display: flex;
+  gap: 5px;
+}
+
+.skill {
+  border: 0.5px solid;
+  padding: 2px 5px;
+  border-radius: 10px;
 }

@@ -1,11 +1,15 @@
 export interface Project {
   title: string;
   skills: string[];
-  src: string;
-  images: string[];
+  thumbnail: string;
+  images: string[] | string;
   introduce: string;
-  github: {
+  githubUrl: string;
+  serviceUrl: string;
+  readme: {
     owner: string;
     repo: string;
+    branch?: string;
+    filePath?: string;
   }
 }

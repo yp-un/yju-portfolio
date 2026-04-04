@@ -24,16 +24,18 @@ export default function Card({ project }: Props) {
   return (
     <div ref={ref} className={`${style.card} ${active ? style.active : ""}`} onClick={() => openModal(project)}>
       <div className={style.viewBox}>
-        {project.title === "yju-portfolio" ? (
-          <iframe src={project.src} title="portfolioFrame" />
-        ) : (
-          <Image className={style.img} fill src={project.src} alt={project.title + "이미지"} />
-        )}
+        <Image className={style.img} fill src={project.thumbnail} alt={project.title + "이미지"} />
       </div>
       <div className={style.text}>
         <h3 className={style.title}>{project.title}</h3>
-        <p className={style.skills}>{project.skills.join(" / ")}</p>
-        <p className={style.more}>{project.introduce}</p>
+        <p className={style.introduce}>{project.introduce}</p>
+        <div className={style.skills}>
+          {project.skills.map((skill, idx) => (
+            <span key={idx} className={style.skill}>
+              {skill}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
