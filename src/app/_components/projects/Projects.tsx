@@ -15,7 +15,7 @@ const data: Project[] = [
     readme: {
       owner: "yp-un",
       repo: "yju-portfolio",
-      filePath: "public/portfolio/description.md",
+      filePath: "public/shathing/description.md",
     },
   },
   {
@@ -29,7 +29,7 @@ const data: Project[] = [
     readme: {
       owner: "yp-un",
       repo: "yju-portfolio",
-      filePath: "public/shthing/description.md",
+      filePath: "public/tripplai/description.md",
     },
   },
   {
