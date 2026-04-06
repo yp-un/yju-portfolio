@@ -82,3 +82,86 @@ Next.js App Router에서는 `<html>` 태그를 `RootLayout`에 두는 것이 기
 ### AWS 로 이주
 
 현재 프로젝트는 초기 운영 비용을 최소화하기 위해 무료 플랜 중심으로 서비스를 분산 배포했다. 다만 트래픽이 증가하고 운영 복잡도가 높아지면, 장기적으로는 AWS 중심으로 인프라를 통합하는 방향을 검토할 필요가 있다.
+
+## 서비스 아키텍처
+
+```mermaid
+flowchart TB
+    U[사용자<br/>Browser]
+
+    subgraph FE_RUNTIME[Frontend Runtime]
+        FE[Vercel<br/>Next.js<br/>shthing.shop]
+    end
+
+    subgraph BE_RUNTIME[Backend Runtime]
+        CR[Google Cloud Run<br/>Spring Boot<br/>api.shthing.shop]
+
+        subgraph APP[Application]
+            SEC[Spring Security Filter Chain]
+            JWT[JWT 인증 / 인가]
+            CTRL[Controller]
+            SVC[Service]
+            REPO[Repository]
+            SIGN[Presigned URL 발급 로직]
+        end
+    end
+
+    subgraph DATA[Data & Storage]
+        DB[(Neon PostgreSQL)]
+        R2[Cloudflare R2]
+        CDN[cdn.shthing.shop]
+    end
+
+    subgraph FE_CICD[Frontend CI/CD]
+        FED[Developer]
+        FE_GH[GitHub Frontend Repo]
+        GHA[GitHub Actions]
+        VITEST[Vitest]
+        PLAY[Playwright]
+        PRIVATE[Personal Frontend Repo]
+        VERCEL_DEPLOY[Vercel Auto Deploy]
+    end
+
+    subgraph BE_CICD[Backend CI/CD]
+        BED[Developer]
+        BE_GH[GitHub Backend Repo]
+        CR_DEPLOY[Cloud Run Auto Deploy]
+    end
+
+    %% Runtime
+    U -->|HTTPS| FE
+    FE -->|HTTPS API 요청| CR
+
+    CR --> SEC
+    SEC --> JWT
+    JWT --> CTRL
+    CTRL --> SVC
+    SVC --> REPO
+    REPO --> DB
+
+    %% Upload flow
+    FE -->|업로드용 Presigned URL 요청| CR
+    SVC --> SIGN
+    SIGN -->|업로드 정책 기반 URL 생성| R2
+    CR -->|Presigned URL 응답| FE
+    FE -->|이미지 직접 업로드| R2
+
+    %% Asset delivery
+    FE -->|이미지/정적 파일 참조| CDN
+    CDN -->|Origin Fetch| R2
+
+    %% FE deploy
+    FED -->|push| FE_GH
+    FE_GH --> GHA
+    GHA --> VITEST
+    GHA --> PLAY
+    VITEST -->|성공| PRIVATE
+    PLAY -->|성공| PRIVATE
+    PRIVATE -->|push 감지| VERCEL_DEPLOY
+    VERCEL_DEPLOY --> FE
+
+    %% BE deploy
+    BED -->|push| BE_GH
+    BE_GH -->|변경 감지| CR_DEPLOY
+    CR_DEPLOY --> CR
+```
