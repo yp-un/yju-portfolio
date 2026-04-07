@@ -1,21 +1,13 @@
+@use "@/app/_styles/mixins.scss" as m;
 @use "@/app/_styles/variables.scss" as v;
 
 .container {
   display: flex;
   justify-content: center;
-  padding: 50px 20px 100px;
+  padding: 10px;
+  padding-top: #{v.$nav-height};
 }
 
 .inner {
-  width: 100%;
-  max-width: 700px;
-  background-color: var(--bg-color);
-  border-radius: 10px;
-  box-shadow: 0 0 1px var(--text-color);
-  padding: 15px;
-
-  @media #{v.$mobile} {
-    box-shadow: none;
-    padding: 0;
-  }
+  @include m.wd;
 }
