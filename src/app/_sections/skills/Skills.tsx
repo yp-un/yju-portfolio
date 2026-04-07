@@ -387,17 +387,17 @@ export default function Skills() {
       <Title title="Skills" />
       <div className={style.wrapper}>
         <div>
-          <p className={style.description}>마우스를 올리거나 클릭하여(모바일) 숙련도를 확인할 수 있습니다.</p>
+          <p className={style.description}>마우스를 올리거나 터치하여 숙련도를 확인할 수 있습니다.</p>
           {showMore ? (
             <ul className={style.descriptionList}>
               <li>
-                <strong>上</strong>: 실무에서 자연스럽게 사용할 수 있는 수준
+                <strong>上</strong>: 주요 이슈 트러블슈팅을 할 수 있을 정도로 내부구조에 대해 이해하고 있음
               </li>
               <li>
-                <strong>中</strong>: 필요 시 검색을 병행하여 사용 가능
+                <strong>中</strong>: 일부 참고(책/인터넷)를 통해 개발할 수 있음
               </li>
               <li>
-                <strong>下</strong>: 학습 경험 있으며, 필요 시 빠르게 적응 가능
+                <strong>下</strong>: 구체적으로는 잘 모르지만, 기본적인 지식과 경험은 가지고 있음
               </li>
             </ul>
           ) : (
