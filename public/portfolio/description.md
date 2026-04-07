@@ -13,7 +13,6 @@
 | <img src="https://img.shields.io/badge/Next.js-000000?style=flat&logo=Next.js&logoColor=white">       | `15`     | App Router |
 | <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=black">           | `19`     |
 | <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white"> | `5`      |
-| <img src="https://img.shields.io/badge/Zustand-443F3A?style=flat&logoColor=white">                    | `5`      |
 | <img src="https://img.shields.io/badge/Sass-CC6699?style=flat&logo=Sass&logoColor=white">             | `1.83.3` |
 | <img src="https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white">         |          | Deploy     |
 
@@ -22,6 +21,10 @@
 ### 반응형 웹
 
 화면 크기에 따라 레이아웃과 인터랙션이 자연스럽게 변경되도록 하고, 사용자의 기기 테마 설정에 맞춰 라이트/다크 테마가 자동으로 전환되도록 적용해 일관된 사용자 경험을 제공했다.
+
+### 모달창 띄우기
+
+프로젝트 카드를 클릭하면 `/project/[id]` 경로로 이동하지만, 메인 페이지에서의 클라이언트 이동은 Next.js App Router의 패러럴 라우팅과 인터셉트 라우팅으로 가로채 모달 형태로 상세를 띄우도록 구현했다. `@projectModal` 슬롯에 `(.)project/[id]` 경로를 두어 현재 메인 화면과 스크롤 위치를 유지한 채 상세 정보를 오버레이로 보여주고, 주소를 직접 입력하거나 새로고침한 경우에는 동일한 URL이 독립 페이지로 렌더링되도록 구성했다. 덕분에 공유 가능한 URL 구조와 모달 UX를 함께 가져가면서도, 별도의 전역 상태에 의존하지 않고 라우팅만으로 상세 화면을 일관되게 제어할 수 있었다.
 
 ## 기여도와 역할
 
