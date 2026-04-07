@@ -11,7 +11,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useRouter, useSearchParams } from "next/navigation";
-import Markdown from "../_components/projects/components/Markdown";
+import Markdown from "../_sections/projects/components/Markdown";
 
 export default function ProjectModal() {
   const searchParams = useSearchParams();

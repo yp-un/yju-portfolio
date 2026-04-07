@@ -1,9 +1,9 @@
 import { use } from "react";
-import Main from "./_components/main/Main";
-import AboutMe from "./_components/aboutme/AboutMe";
-import Skills from "./_components/skills/Skills";
-import Archiving from "./_components/archiving/Archiving";
-import Projects from "./_components/projects/Projects";
+import Main from "./_sections/main/Main";
+import AboutMe from "./_sections/aboutme/AboutMe";
+import Skills from "./_sections/skills/Skills";
+import Archiving from "./_sections/archiving/Archiving";
+import Projects from "./_sections/projects/Projects";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
