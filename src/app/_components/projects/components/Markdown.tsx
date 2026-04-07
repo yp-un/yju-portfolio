@@ -1,9 +1,10 @@
 "use client";
 
+import style from "./Markdown.module.scss";
 import getReadme from "@/app/_services/getReadme";
 import { Project } from "@/app/_types/Project";
 import MarkdownPreview from "@uiw/react-markdown-preview";
-import { isValidElement, type ReactNode, useEffect, useId, useState } from "react";
+import { Fragment, isValidElement, type ReactNode, useEffect, useId, useState } from "react";
 
 let mermaidModulePromise: Promise<typeof import("mermaid")> | null = null;
 
@@ -78,7 +79,7 @@ function MermaidCode({ children, className }: { children?: ReactNode; className?
 }
 
 export default function Markdown({ readme }: { readme: Project["readme"] | undefined }) {
-  const [text, setText] = useState("");
+  const [text, setText] = useState<string | null>();
 
   useEffect(() => {
     async function fetchReadme() {
@@ -89,6 +90,24 @@ export default function Markdown({ readme }: { readme: Project["readme"] | undef
 
     fetchReadme();
   }, [readme]);
+
+  if (text == null) {
+    return (
+      <div className={style.skeleton}>
+        <div className={style.title} />
+        {Array.from({ length: 2 }, (_, idx) => (
+          <Fragment key={idx}>
+            <div className={style.line} />
+            <div className={`${style.line} ${style.wide}`} />
+            <div className={`${style.line} ${style.medium}`} />
+            <div className={style.block} />
+            <div className={style.line} />
+            <div className={`${style.line} ${style.short}`} />
+          </Fragment>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <MarkdownPreview
