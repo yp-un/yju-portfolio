@@ -1,4 +1,5 @@
 @use "@/app/_styles/mixins.scss" as m;
+@use "@/app/_styles/variables.scss" as v;
 
 .container {
   height: 100svh;
@@ -11,8 +12,9 @@
 }
 
 .mainWrapper {
-  padding-top: 72px;
-  background: linear-gradient(var(--bg-color-opacity-90p), var(--bg-color-opacity-90p)),
+  padding-top: #{v.$nav-height};
+  background:
+    linear-gradient(var(--bg-color-opacity-90p), var(--bg-color-opacity-90p)),
     url("/cover.png") center/cover no-repeat;
   flex: 7;
   display: flex;

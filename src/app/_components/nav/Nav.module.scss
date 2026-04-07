@@ -6,7 +6,7 @@
   position: fixed;
   display: flex;
   justify-content: center;
-  height: 72px;
+  height: #{v.$nav-height};
   transition: transform 0.3s ease;
   &.hide {
     transform: translateY(-100%);
@@ -18,17 +18,9 @@
 }
 
 .navBG {
-  background: linear-gradient(
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0.5) 90%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5) 90%, rgba(255, 255, 255, 0) 100%);
   @media (prefers-color-scheme: dark) {
-    background: linear-gradient(
-      rgba(0, 0, 0, 1),
-      rgba(0, 0, 0, 0.5) 90%,
-      rgba(0, 0, 0, 0) 100%
-    );
+    background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5) 90%, rgba(0, 0, 0, 0) 100%);
   }
 }
 
@@ -53,7 +45,7 @@
   @media #{v.$mobile} {
     flex-direction: column;
     position: absolute;
-    top: 72px;
+    top: #{v.$nav-height};
     right: 0;
     transition: all 0.3s;
     overflow: hidden;
@@ -82,10 +74,15 @@
   @media #{v.$mobile} {
     padding-right: 6px;
     text-align: right;
-    text-shadow: 2px 2px 2px var(--bg-color), 2px -2px 2px var(--bg-color),
-      -2px 2px 2px var(--bg-color), -2px -2px 2px var(--bg-color),
-      1px 1px 0 var(--bg-color), -1px 1px 0 var(--bg-color),
-      1px -1px 0 var(--bg-color), -1px -1px 0 var(--bg-color);
+    text-shadow:
+      2px 2px 2px var(--bg-color),
+      2px -2px 2px var(--bg-color),
+      -2px 2px 2px var(--bg-color),
+      -2px -2px 2px var(--bg-color),
+      1px 1px 0 var(--bg-color),
+      -1px 1px 0 var(--bg-color),
+      1px -1px 0 var(--bg-color),
+      -1px -1px 0 var(--bg-color);
   }
 }
 
