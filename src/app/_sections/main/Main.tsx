@@ -1,5 +1,5 @@
 import Card from "./components/card/Card";
-import Title from "../title/Title";
+import Title from "@/app/_components/title/Title";
 import style from "./Main.module.scss";
 
 const data = [

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "@/app/_styles/globals.scss";
-import Nav from "@/app/_sections/nav/Nav";
-import Footer from "@/app/_sections/footer/Footer";
+import Nav from "@/app/_components/nav/Nav";
+import Footer from "@/app/_components/footer/Footer";
 import { Suspense } from "react";
-import Loading from "./_sections/loading/Loading";
+import Loading from "@/app/_components/loading/Loading";
 
 const title = "양정운 포트폴리오";
 const description = "프론트엔드 개발자 양정운 포트폴리오";

@@ -2,7 +2,7 @@
 
 import Accordion, { type AccordionItem } from "./components/accordion/Accordion";
 import Timeline from "./components/timeline/Timeline";
-import Title from "../title/Title";
+import Title from "@/app/_components/title/Title";
 import style from "./AboutMe.module.scss";
 
 export interface Data {

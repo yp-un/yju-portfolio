@@ -1,4 +1,4 @@
-import Title from "../title/Title";
+import Title from "@/app/_components/title/Title";
 import style from "./Archiving.module.scss";
 import Card from "./components/card/Card";
 

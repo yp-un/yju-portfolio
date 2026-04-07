@@ -1,4 +1,4 @@
-import Title from "../title/Title";
+import Title from "@/app/_components/title/Title";
 import style from "./Projects.module.scss";
 import type { Project } from "@/app/_types/Project";
 import Card from "./components/card/Card";

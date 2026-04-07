@@ -1,7 +1,7 @@
 "use client";
 
 import { JSX, useState } from "react";
-import Title from "../title/Title";
+import Title from "@/app/_components/title/Title";
 import style from "./Skills.module.scss";
 import Skill from "./components/skill/Skill";
 
