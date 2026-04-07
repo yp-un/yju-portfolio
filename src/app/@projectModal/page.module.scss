@@ -67,6 +67,10 @@
     padding: 30px;
     object-fit: contain;
     user-select: none;
+
+    @media (prefers-color-scheme: dark) {
+      filter: brightness(0.9);
+    }
   }
 }
 
