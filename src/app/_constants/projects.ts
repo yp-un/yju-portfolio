@@ -34,7 +34,7 @@ export const projects: Project[] = [
   {
     id: "3",
     title: "yju-portfolio",
-    skills: ["Next.js", "TypeScript", "Zustand", "Sass"],
+    skills: ["Next.js", "TypeScript", "Sass"],
     thumbnail: "/og-image.webp",
     images: process.env.NEXT_PUBLIC_BASE_URL!,
     introduce: "포트폴리오",

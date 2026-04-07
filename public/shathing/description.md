@@ -4,26 +4,26 @@
 
 개인 프로젝트 | 2026.01 ~ 2026.03
 
-> Spring Boot를 학습하는 과정에서, 이전부터 만들고 싶었던 물건 공유 플랫폼을 프론트엔드부터 백엔드, 배포까지 직접 구현했다. 또한 단순한 개발로 끝내지 않고 실제 운영까지 고려해 인프라 비용을 최소화하는 방향으로 설계했다.
+> 이전부터 만들고 싶었던 물건 공유 플랫폼을 프론트엔드부터 백엔드, 배포까지 직접 구현했다. 또한 단순한 개발로 끝내지 않고 실제 운영까지 고려해 인프라 비용을 최소화하는 방향으로 설계했다.
 
 ## 기술 스택
 
-| 스택                                                                                                     | 버전 | 기타             |
-| -------------------------------------------------------------------------------------------------------- | ---- | ---------------- |
-| <img src="https://img.shields.io/badge/Next.js-000000?style=flat&logo=Next.js&logoColor=white">          | `16` | App Router       |
+| 스택                                                                                                     | 버전 | 기타                 |
+| -------------------------------------------------------------------------------------------------------- | ---- | -------------------- |
+| <img src="https://img.shields.io/badge/Next.js-000000?style=flat&logo=Next.js&logoColor=white">          | `16` | App Router           |
 | <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=black">              | `19` |
 | <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white">    | `5`  |
-| <img src="https://img.shields.io/badge/Zustand-443F3A?style=flat&logoColor=white">                       | `5`  |
-| <img src="https://img.shields.io/badge/reactquery-FF4154?style=flat&logo=reactquery&logoColor=white">    | `5`  |
+| <img src="https://img.shields.io/badge/Zustand-443F3A?style=flat&logoColor=white">                       | `5`  | 클라이언트 상태 관리 |
+| <img src="https://img.shields.io/badge/reactquery-FF4154?style=flat&logo=reactquery&logoColor=white">    | `5`  | 서버 상태 관리       |
 | <img src="https://img.shields.io/badge/Tailwind CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white"> | `4`  |
-| <img src="https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white">            |      | FE Deploy        |
+| <img src="https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white">            |      | FE Deploy            |
 | <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat&logo=springboot&logoColor=white">   | `4`  |
 | <img src="https://img.shields.io/badge/Java-007396?style=flat&logoColor=white">                          | `17` |
-| <img src="https://img.shields.io/badge/Cloud Run-4285F4?style=flat&logo=googlecloud&logoColor=white">    |      | BE Deploy        |
+| <img src="https://img.shields.io/badge/Cloud Run-4285F4?style=flat&logo=googlecloud&logoColor=white">    |      | BE Deploy            |
 | <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white">    | `17` |
-| <img src="https://img.shields.io/badge/Neon-65C093?style=flat&logoColor=white">                          |      | DB Deploy        |
-| <img src="https://img.shields.io/badge/R2-F38020?style=flat&logo=cloudflare&logoColor=white">            |      | Object Storage   |
-| <img src="https://img.shields.io/badge/Sentry-362D59?style=flat&logo=sentry&logoColor=white">            |      | Error Monitoring |
+| <img src="https://img.shields.io/badge/Neon-65C093?style=flat&logoColor=white">                          |      | DB Deploy            |
+| <img src="https://img.shields.io/badge/R2-F38020?style=flat&logo=cloudflare&logoColor=white">            |      | Object Storage       |
+| <img src="https://img.shields.io/badge/Sentry-362D59?style=flat&logo=sentry&logoColor=white">            |      | Error Monitoring     |
 
 ## 주요 기능
 
