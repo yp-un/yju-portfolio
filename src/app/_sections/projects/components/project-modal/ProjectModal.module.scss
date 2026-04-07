@@ -1,0 +1,56 @@
+@use "@/app/_styles/variables.scss" as v;
+
+.container {
+  position: fixed;
+  top: 0;
+  width: 100dvw;
+  height: 100dvh;
+  overflow-y: auto;
+  background-color: var(--bg-color-opacity-50p);
+  z-index: #{v.$z-modal};
+}
+
+.inner {
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  position: relative;
+
+  @media #{v.$desktop} {
+    box-shadow: 0 0 1px var(--text-color);
+    margin: 50px calc((100% - 700px) / 2);
+  }
+
+  @media #{v.$mobile} {
+    margin: 0;
+    min-height: 100dvh;
+  }
+}
+
+.close {
+  z-index: #{v.$z-modal};
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+
+  svg {
+    fill: var(--text-color);
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    background-color: var(--text-color-opacity-20p);
+  }
+}
