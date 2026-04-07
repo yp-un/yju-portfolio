@@ -10,7 +10,10 @@ const description = "프론트엔드 개발자 양정운 포트폴리오";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL as string),
-  title,
+  title: {
+    default: title,
+    template: `%s - ${title}`,
+  },
   description,
   openGraph: {
     title,
