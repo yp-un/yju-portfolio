@@ -15,9 +15,21 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const project = getProjectById(id);
-  const title = project?.title;
-  if (title) return { title: `${title} 프로젝트` };
-  return { title: "프로젝트" };
+  if (!project) return { title: "프로젝트" };
+
+  const title = `${project.title} 프로젝트`;
+
+  return {
+    title,
+    openGraph: {
+      title,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/project/${id}`,
+      images: {
+        url: project.thumbnail,
+        alt: title,
+      },
+    },
+  };
 }
 
 export default async function ProjectPage({ params }: Props) {
