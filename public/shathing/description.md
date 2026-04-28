@@ -4,7 +4,7 @@
 
 개인 프로젝트 | 2026.01 ~ 2026.03
 
-> 이전부터 만들고 싶었던 물건 공유 플랫폼을 프론트엔드부터 백엔드, 배포까지 직접 구현했다. 또한 단순한 개발로 끝내지 않고 실제 운영까지 고려해 인프라 비용을 최소화하는 방향으로 설계했다.
+> 이전부터 만들고 싶었던 물건 공유 플랫폼을 프론트엔드부터 백엔드 그리고 앱, 배포까지 직접 구현했다. 또한 단순한 개발로 끝내지 않고 실제 운영까지 고려해 인프라 비용을 최소화하는 방향으로 설계했다.
 
 ## 기술 스택
 
@@ -12,6 +12,8 @@
 | -------------------------------------------------------------------------------------------------------- | ---- | -------------------- |
 | <img src="https://img.shields.io/badge/Next.js-000000?style=flat&logo=Next.js&logoColor=white">          | `16` | App Router           |
 | <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=black">              | `19` |
+| <img src="https://img.shields.io/badge/React Native-61DAFB?style=flat&logo=react&logoColor=black">       | `0.81` | App                  |
+| <img src="https://img.shields.io/badge/Expo-000020?style=flat&logo=expo&logoColor=white">                | `54` | App Router           |
 | <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white">    | `5`  |
 | <img src="https://img.shields.io/badge/Zustand-443F3A?style=flat&logoColor=white">                       | `5`  | 클라이언트 상태 관리 |
 | <img src="https://img.shields.io/badge/reactquery-FF4154?style=flat&logo=reactquery&logoColor=white">    | `5`  | 서버 상태 관리       |
@@ -35,7 +37,9 @@
 
 ## 기여도와 역할
 
-1인 프로젝트로 기획, 개발, 인프라 배포까지 전 과정을 직접 수행했다. Next.js 기반 프론트엔드와 Spring Boot 기반 백엔드를 각각 설계 및 구현했고, Vercel, Cloud Run, Neon, R2 조합으로 운영 환경까지 구축했다.
+1인 프로젝트로 기획, 개발, 인프라 배포까지 전 과정을 직접 수행했다. Next.js 기반 프론트엔드와 Spring Boot 기반 백엔드를 각각 설계 및 구현했고, Vercel, Cloud Run, Neon, R2 조합으로 운영 환경까지 구축했다. 추가로 기존 웹 프론트엔드에서 구현한 화면 흐름, 디자인 토큰, API 연동 구조를 기준으로 React Native 앱을 제작했다.
+
+React Native 앱은 AI를 적극적으로 활용해 하루 만에 MVP 수준으로 구현했다. 단순히 화면만 복제한 것이 아니라 Expo Router 기반 탭/상세 라우팅, AsyncStorage 기반 토큰 저장, REST API 연동, 이미지 업로드, WebSocket/STOMP 채팅까지 기존 서비스의 핵심 흐름이 모바일 환경에서도 동작하도록 구성했다.
 
 ## 트러블 슈팅
 
@@ -59,15 +63,23 @@ Next.js App Router에서는 `<html>` 태그를 `RootLayout`에 두는 것이 기
 
 기존에는 access token을 localStorage에 저장하고 헤더에 담아 인증하는 방식으로 구현했지만, 이 방식은 server side에서 인증 상태를 직접 확인하기 어렵다는 한계가 있었다. 그래서 서버에서도 읽을 수 있는 cookie 기반 인증으로 전환해 server side에서도 인증 정보를 활용할 수 있도록 변경했다.
 
+### 웹 기반 앱 전환
+
+React Native 앱은 이미 구현된 웹 프론트엔드의 화면 흐름, API 타입, 디자인 시스템을 기준으로 빠르게 구현했다. 다만 웹과 앱은 인증 토큰 저장 방식, OAuth redirect, 이미지 선택 권한, WebSocket frame 전송 방식이 달라 단순 변환만으로는 동작하지 않았다. 앱에서는 토큰을 AsyncStorage에 저장하고 Axios interceptor로 전송했으며, Expo Go/native 환경에서 STOMP frame 전송 방식을 별도로 처리해 Spring WebSocket 백엔드와의 채팅 연결을 맞췄다.
+
 ### 쿠키 도메인
 
-프론트는 `shthing.shop`, 백엔드는 `api.shathing.shop` 도메인을 사용하고 있어 브라우저에서 백엔드 쿠키를 서드파티 쿠키로 인식하는 문제가 있었다. 이를 해결하기 위해 쿠키 `Domain`을 상위 도메인 기준으로 맞추고, 프론트와 백엔드 요청 구조를 이에 맞게 조정해 인증 쿠키를 안정적으로 공유할 수 있도록 했다.
+프론트는 `shathing.shop`, 백엔드는 `api.shathing.shop` 도메인을 사용하고 있어 브라우저에서 백엔드 쿠키를 서드파티 쿠키로 인식하는 문제가 있었다. 이를 해결하기 위해 쿠키 `Domain`을 상위 도메인 기준으로 맞추고, 프론트와 백엔드 요청 구조를 이에 맞게 조정해 인증 쿠키를 안정적으로 공유할 수 있도록 했다.
 
 ## 결과 및 성과
 
 ### 무료
 
 프론트엔드, 백엔드, 데이터베이스, 오브젝트 스토리지를 모두 클라우드 환경으로 구성했음에도 사용자가 적을 땐 무료 플랜 범위 내에서 운영 가능하도록 설계했다.
+
+### AI 활용으로 모바일 앱 MVP 구현
+
+기존 웹 프론트엔드에서 도메인 흐름과 API 연동 방식이 정리되어 있었기 때문에, 이를 기준으로 AI와 페어 프로그래밍하듯 React Native 앱을 빠르게 구현할 수 있었다. 하루 만에 공유글 목록/상세/작성, 로그인, 이미지 업로드, 채팅, 설정 화면까지 앱 MVP를 구성했고, 웹에서 검증한 백엔드 API를 모바일 환경에서도 재사용할 수 있음을 확인했다.
 
 ## 개선점
 
@@ -83,18 +95,24 @@ Next.js App Router에서는 `<html>` 태그를 `RootLayout`에 두는 것이 기
 
 현재 프로젝트는 초기 운영 비용을 최소화하기 위해 무료 플랜 중심으로 서비스를 분산 배포했다. 다만 트래픽이 증가하고 운영 복잡도가 높아지면, 장기적으로는 AWS 중심으로 인프라를 통합하는 방향을 검토할 필요가 있다.
 
+### 앱 운영 환경 정리
+
+React Native 앱은 현재 MVP 단계이기 때문에 Expo Go 중심으로 검증했다. 이후에는 EAS development build와 production build 환경을 분리하고, 푸시 알림, 읽음 처리, 이미지 업로드 진행률, 핵심 사용자 흐름 테스트를 추가할 필요가 있다.
+
 ## 서비스 아키텍처
 
 ```mermaid
 flowchart TB
     U[사용자<br/>Browser]
+    M[사용자<br/>Mobile App]
 
-    subgraph FE_RUNTIME[Frontend Runtime]
-        FE[Vercel<br/>Next.js<br/>shthing.shop]
+    subgraph CLIENT_RUNTIME[Client Runtime]
+        FE[Vercel<br/>Next.js<br/>shathing.shop]
+        RNAPP[Expo / React Native<br/>Shathing App]
     end
 
     subgraph BE_RUNTIME[Backend Runtime]
-        CR[Google Cloud Run<br/>Spring Boot<br/>api.shthing.shop]
+        CR[Google Cloud Run<br/>Spring Boot<br/>api.shathing.shop]
 
         subgraph APP[Application]
             SEC[Spring Security Filter Chain]
@@ -109,7 +127,7 @@ flowchart TB
     subgraph DATA[Data & Storage]
         DB[(Neon PostgreSQL)]
         R2[Cloudflare R2]
-        CDN[cdn.shthing.shop]
+        CDN[cdn.shathing.shop]
     end
 
     subgraph FE_CICD[Frontend CI/CD]
@@ -131,6 +149,10 @@ flowchart TB
     %% Runtime
     U -->|HTTPS| FE
     FE -->|HTTPS API 요청| CR
+    M --> RNAPP
+    RNAPP -->|HTTPS API 요청| CR
+    RNAPP <-->|STOMP over WebSocket| CR
+    RNAPP -->|이미지 직접 업로드| R2
 
     CR --> SEC
     SEC --> JWT
