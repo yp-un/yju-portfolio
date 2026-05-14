@@ -63,4 +63,13 @@ flowchart LR
 
 측정 당시 기준으로 `양정운 포트폴리오`, `개발자 양정운`, `프론트 양정운` 검색어에서 구글과 네이버 검색 결과 상단에 노출되었다.
 
-![검색 화면 캡쳐 이미지](https://yju-portfolio.com/portfolio/search.webp)
+<picture>
+  <source
+    srcset="https://raw.githubusercontent.com/yp-un/yju-portfolio/main/public/portfolio/images/dark/search.webp"
+    media="(prefers-color-scheme: dark)"
+  />
+  <img
+    src="https://raw.githubusercontent.com/yp-un/yju-portfolio/main/public/portfolio/images/light/search.webp"
+    alt="검색 화면 캡쳐 이미지"
+  />
+</picture>
