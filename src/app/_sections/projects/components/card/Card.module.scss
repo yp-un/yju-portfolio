@@ -41,15 +41,6 @@
   }
 }
 
-.img {
-  transition: transform 0.3s ease;
-  object-fit: cover;
-
-  @media (prefers-color-scheme: dark) {
-    filter: brightness(0.9);
-  }
-}
-
 .text {
   padding: 20px;
   h3 {

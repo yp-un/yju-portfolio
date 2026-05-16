@@ -23,7 +23,7 @@ export const projects: Project[] = [
 		key: "tripplai",
 		title: "Tripplai",
 		skills: ["Next.js", "TypeScript", "Zustand", "ReactQuery", "Tailwind CSS"],
-		imgCnt: 5,
+		imgCnt: 2,
 		introduce: "AI 기반 여행 계획 플랫폼",
 		githubUrl: "https://github.com/Tripplai/client",
 		serviceUrl: "https://tripplai.vercel.app",

@@ -9,6 +9,7 @@ import style from "./ProjectDetail.module.scss";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import Picture from "../picture/Picture";
 
 interface Props {
 	project: Project;
@@ -36,11 +37,7 @@ export default function ProjectDetail({ project }: Props) {
 						{Array.from({ length: project.imgCnt }).map((_, idx) => (
 							<SwiperSlide key={`${project.key}-${idx}`}>
 								<div className={style.img}>
-									<Image
-										fill
-										src={`/${project.key}/${idx + 1}.webp`}
-										alt={`${project.title} 이미지 ${idx + 1}`}
-									/>
+									<Picture project={project} idx={idx + 1} />
 								</div>
 							</SwiperSlide>
 						))}

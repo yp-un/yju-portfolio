@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useScrollTrigger } from "@/app/_hooks/useScrollTrigger";
 import type { Project } from "@/app/_types/Project";
+import Picture from "../picture/Picture";
 import style from "./Card.module.scss";
 
 interface Props {
@@ -17,12 +17,7 @@ export default function Card({ project }: Props) {
 		<Link href={`/project/${project.key}`} className={style.link}>
 			<div ref={ref} className={`${style.card} ${active ? style.active : ""}`}>
 				<div className={style.viewBox}>
-					<Image
-						className={style.img}
-						fill
-						src={`/${project.key}/1.webp`}
-						alt={`${project.title} 이미지`}
-					/>
+					<Picture project={project} idx={1} />
 				</div>
 				<div className={style.text}>
 					<h3 className={style.title}>{project.title}</h3>
