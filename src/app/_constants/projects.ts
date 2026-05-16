@@ -14,7 +14,7 @@ export const projects: Project[] = [
 		serviceUrl: "https://yourmillionaire.kro.kr/",
 		readme: {
 			owner: "yp-un",
-			repo: "yourmillionaire-frontend",
+			repo: "yju-portfolio",
 			filePath: "public/yourmillionaire/description.md",
 		},
 	},
