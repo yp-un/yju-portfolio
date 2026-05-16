@@ -2,7 +2,24 @@ import type { Project } from "@/app/_types/Project";
 
 export const projects: Project[] = [
 	{
-		id: "1",
+		id: "4",
+		title: "YourMillionaire",
+		skills: ["Next.js", "React", "MFE", "AWS", "CloudFront"],
+		thumbnail: "/yourmillionaire/1.webp",
+		images: Array.from({ length: 6 }).map(
+			(_, i) => `/yourmillionaire/${i + 1}.webp`,
+		),
+		introduce: "AI 회계",
+		githubUrl: "https://github.com/yp-un/yourmillionaire-frontend",
+		serviceUrl: "https://yourmillionaire.kro.kr/",
+		readme: {
+			owner: "yp-un",
+			repo: "yourmillionaire-frontend",
+			filePath: "public/yourmillionaire/description.md",
+		},
+	},
+	{
+		id: "3",
 		title: "Shathing",
 		skills: ["Next.js", "Spring Boot", "WebSocket", "PostgreSQL"],
 		thumbnail: "/shathing/1.webp",
@@ -32,7 +49,7 @@ export const projects: Project[] = [
 		},
 	},
 	{
-		id: "3",
+		id: "1",
 		title: "yju-portfolio",
 		skills: ["Next.js", "TypeScript", "Sass"],
 		thumbnail: "/og-image.webp",
