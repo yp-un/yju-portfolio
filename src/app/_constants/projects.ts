@@ -14,7 +14,7 @@ export const projects: Project[] = [
 		key: "shathing",
 		title: "Shathing",
 		skills: ["Next.js", "Spring Boot", "WebSocket", "PostgreSQL"],
-		imgCnt: 8,
+		imgCnt: 5,
 		introduce: "물건 공유 플랫폼",
 		githubUrl: "https://github.com/orgs/shathing/repositories",
 		serviceUrl: "https://shathing.shop",
