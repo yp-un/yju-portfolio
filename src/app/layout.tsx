@@ -6,7 +6,7 @@ import Loading from "@/app/_components/loading/Loading";
 import Nav from "@/app/_components/nav/Nav";
 
 const title = "양정운 포트폴리오";
-const description = "프론트엔드 개발자 양정운 포트폴리오";
+const description = "개발자 양정운 포트폴리오";
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
