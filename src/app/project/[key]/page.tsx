@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjectByKey, projects } from "@/app/_constants/projects";
 import ProjectDetail from "@/app/_sections/projects/components/project-detail/ProjectDetail";
@@ -9,7 +10,7 @@ interface Props {
 }
 
 export function generateStaticParams() {
-	return projects.map((project) => ({ id: project.key }));
+	return projects.map((project) => ({ key: project.key }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -18,14 +19,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	if (!project) return { title: "프로젝트" };
 
 	const title = `${project.title} 프로젝트`;
+	const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://yju-portfolio.com";
 
 	return {
 		title,
+		description: project.introduce,
 		openGraph: {
 			title,
-			url: `${process.env.NEXT_PUBLIC_BASE_URL}/project/${key}`,
+			url: `${baseUrl}/project/${key}`,
 			images: {
-				url: `${process.env.NEXT_PUBLIC_BASE_URL}/${key}/1.webp`,
+				url: `${baseUrl}/${key}/images/light/1.webp`,
 				alt: title,
 			},
 		},
@@ -40,6 +43,7 @@ export default async function ProjectPage({ params }: Props) {
 
 	return (
 		<section className={style.container}>
+			<Link href="/#Projects" className={style.back}><span aria-hidden="true">←</span> 프로젝트 목록으로</Link>
 			<div className={style.inner}>
 				<ProjectDetail project={project} />
 			</div>

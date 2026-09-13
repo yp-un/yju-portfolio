@@ -1,10 +1,5 @@
-.container {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-top: solid 1px rgb(113, 118, 123);
-  span {
-    font-size: 12px;
-  }
-}
+.container { background: #252821; color: #aeb6a5; }
+.inner { width: min(var(--max-width), calc(100% - 80px)); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-top: 1px solid #464b3f; font-size: 10px; }
+.inner > span:nth-child(2) { font-family: "Courier New", monospace; font-size: 9px; }
+.inner a { display: flex; gap: 12px; align-items: center; &:hover { color: var(--accent); } }
+@media (max-width: 767px) { .inner { width: calc(100% - 48px); font-size: 9px; } .inner > span:nth-child(2) { display: none; } }

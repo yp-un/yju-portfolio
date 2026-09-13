@@ -56,3 +56,27 @@
   height: 120px;
   margin: 8px 0;
 }
+
+.error {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+
+  button {
+    margin-top: 16px;
+    padding: 10px 17px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: var(--accent);
+    color: var(--text-color);
+    font: inherit;
+    cursor: pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title, .line, .block { animation: none; }
+}

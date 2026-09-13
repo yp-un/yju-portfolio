@@ -1,91 +1,47 @@
-@use "@/app/_styles/variables.scss" as v;
-
-@mixin activeOrHover {
-  border-radius: 5px;
-  gap: 5px;
-
-  .name {
-    max-width: 170px;
-    margin: 0 5px;
-  }
-
-  .proficiency1,
-  .proficiency2,
-  .proficiency3 {
-    opacity: 1;
-  }
-}
-
 .skill {
-  display: flex;
-  padding: 5px;
-  border-radius: 50%;
-  border-radius: 10px;
-  transition: all 0.5s;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 11px 8px 8px;
+  min-height: 42px;
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--text-color);
+  font-size: 11px;
+  font-weight: 500;
   cursor: pointer;
+  transition: border-color 160ms, background 160ms, transform 160ms;
+
+  &:hover { border-color: #9fa991; background: #f5f7ee; transform: translateY(-2px); }
+  &:focus-visible { outline: 2px solid #73933b; outline-offset: 3px; }
+  &.active { border-color: #a5bd7b; background: #edf5df; }
+}
+
+.mark {
   position: relative;
-
-  @media #{v.$mobile} {
-    &.active {
-      @include activeOrHover;
-    }
-  }
-
-  @media #{v.$desktop} {
-    &:hover {
-      @include activeOrHover;
-    }
-  }
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  background: #eef0e9;
+  flex-shrink: 0;
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 650;
 }
 
-.svg {
-  width: 30px;
-  height: 30px;
+.dot { position: absolute; right: -1px; bottom: -1px; width: 5px; height: 5px; border: 1px solid var(--surface); border-radius: 50%; }
+.chevron { color: var(--muted); font-size: 13px; font-weight: 400; padding-left: 3px; }
 
-  @media #{v.$mobile} {
-    width: 20px;
-    height: 20px;
-  }
+@media (max-width: 760px) {
+  .skill { min-height: 44px; padding-right: 9px; gap: 7px; font-size: 10px; }
+  .mark { width: 22px; height: 22px; }
 }
 
-.name {
-  font-size: 20px;
-  line-height: 30px;
-  max-width: 0px;
-  text-wrap: nowrap;
-  overflow: hidden;
-  transition: all 0.5s;
-
-  @media #{v.$mobile} {
-    font-size: 16px;
-    line-height: 20px;
-  }
-}
-
-@mixin proficiency {
-  transform: translate(-50%, -50%);
-  border-radius: 100%;
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
-  padding-top: 1px;
-  text-align: center;
-  color: white;
-  opacity: 0;
-}
-
-.proficiency1 {
-  @include proficiency;
-  background-color: gray;
-}
-
-.proficiency2 {
-  @include proficiency;
-  background-color: cornflowerblue;
-}
-
-.proficiency3 {
-  @include proficiency;
-  background-color: red;
+@media (prefers-reduced-motion: reduce) {
+  .skill { transition: none; }
+  .skill:hover { transform: none; }
 }

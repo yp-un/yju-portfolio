@@ -4,9 +4,10 @@ import { Suspense } from "react";
 import Footer from "@/app/_components/footer/Footer";
 import Loading from "@/app/_components/loading/Loading";
 import Nav from "@/app/_components/nav/Nav";
+import ScrollEffects from "@/app/_components/scroll-effects/ScrollEffects";
 
 const title = "양정운 포트폴리오";
-const description = "개발자 양정운 포트폴리오";
+const description = "사용자에게 닿는 모든 순간을 고민하는 프론트엔드 개발자 양정운의 프로젝트와 성장 기록입니다.";
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
@@ -57,12 +58,14 @@ export default function RootLayout({
 				</script>
 			</head>
 			<body>
+				<a className="skip-link" href="#main-content">본문으로 바로가기</a>
 				<header>
-					<nav>
+					<nav aria-label="주요 메뉴">
 						<Nav />
 					</nav>
 				</header>
-				<main>{children}</main>
+				<main id="main-content">{children}</main>
+				<ScrollEffects />
 				<footer>
 					<Footer />
 				</footer>

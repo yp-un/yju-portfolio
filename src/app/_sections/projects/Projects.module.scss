@@ -1,18 +1,107 @@
 .container {
-  padding: 100px 0;
-  overflow: hidden;
-}
-
-.wrapper {
-  display: flex;
-  justify-content: space-around;
-  padding: 50px 20px 0 20px;
-}
-
-.inner {
   max-width: var(--max-width);
-  width: 100%;
+  margin: 0 auto;
+  padding: 106px 0 112px;
+  scroll-margin-top: 90px;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+
+  h2 {
+    font-size: clamp(44px, 5.5vw, 76px);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.065em;
+
+    span { color: #708e3b; }
+  }
+}
+
+.eyebrow {
+  margin-bottom: 24px;
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+}
+
+.intro {
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+  word-break: keep-all;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin: 34px 0 28px;
+  padding-top: 25px;
+  border-top: 1px solid var(--line);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    padding: 10px 19px;
+    border: 1px solid transparent;
+    border-radius: 100px;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 180ms, color 180ms, border-color 180ms;
+
+    span { font-size: 10px; opacity: 0.65; }
+    &:hover { border-color: var(--line); color: var(--text-color); }
+    &.selected { background: var(--text-color); color: var(--bg-color); }
+  }
+}
+
+.count {
+  color: var(--muted);
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  white-space: nowrap;
+}
+
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px 26px;
+}
+
+@media (max-width: 1280px) {
+  .container { margin: 0 40px; }
+}
+
+@media (max-width: 700px) {
+  .container { margin: 0 24px; padding: 70px 0 76px; }
+  .heading { align-items: flex-start; flex-direction: column; gap: 22px; }
+  .eyebrow { margin-bottom: 18px; }
+  .intro { font-size: 13px; }
+  .grid { grid-template-columns: 1fr; gap: 24px; }
+  .toolbar { margin-top: 26px; padding-top: 18px; }
+  .filters { gap: 1px; }
+  .filters button { min-height: 44px; padding: 9px 13px; font-size: 12px; }
+  .count { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filters button { transition: none; }
 }

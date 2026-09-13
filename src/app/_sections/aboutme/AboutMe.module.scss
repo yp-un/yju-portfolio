@@ -1,15 +1,113 @@
-@use "@/app/_styles/mixins.scss" as m;
-
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 100px 0;
+  padding: 112px 40px;
+  border-top: 1px solid var(--line);
 }
 
 .wrapper {
-  @include m.wd;
-  padding: 50px 20px 0 20px;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: 88px;
+  align-items: start;
+}
+
+.introduction {
+  position: sticky;
+  top: 124px;
+
+  h2 {
+    margin: 28px 0 26px;
+    font-size: clamp(32px, 3.3vw, 44px);
+    font-weight: 650;
+    line-height: 1.4;
+    letter-spacing: -0.065em;
+    word-break: keep-all;
+
+    > span { color: #73933b; }
+  }
+}
+
+.kicker,
+.timelineLabel {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 17px;
+  line-height: 1.8;
+  letter-spacing: -0.03em;
+  word-break: keep-all;
+}
+
+.narrative {
+  margin-top: 20px;
+  max-width: 380px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.95;
+  word-break: keep-all;
+}
+
+.profileNote {
   display: flex;
-  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  padding-top: 36px;
+  margin-top: 38px;
+  border-top: 1px solid var(--line);
+  max-width: 370px;
+
+  strong { font-size: 13px; font-weight: 600; }
+  p { margin-top: 7px; color: var(--muted); font-size: 11px; }
+}
+
+.noteIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: var(--accent);
+  font-size: 24px;
+}
+
+.timelineLabel { margin: 6px 0 27px; }
+.role { font-size: 13px; color: var(--text-color); font-weight: 600; }
+.experienceIntro { margin-top: 12px; font-size: 13px; line-height: 1.8; word-break: keep-all; }
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  padding: 24px 0;
+  margin: 22px 0 4px;
+  border-top: 1px solid var(--line);
+
+  strong { font-size: 31px; letter-spacing: -0.065em; font-weight: 600; color: var(--text-color); }
+  strong span { font-size: 13px; letter-spacing: -0.025em; margin-left: 3px; }
+  p { margin-top: 7px; font-size: 10px; line-height: 1.6; word-break: keep-all; }
+}
+
+@media (max-width: 1000px) {
+  .wrapper { gap: 48px; grid-template-columns: 0.85fr 1.15fr; }
+  .introduction h2 { font-size: 34px; }
+}
+
+@media (max-width: 760px) {
+  .container { padding: 76px 24px; }
+  .wrapper { grid-template-columns: 1fr; gap: 48px; }
+  .introduction { position: static; }
+  .introduction h2 { font-size: 35px; margin-top: 22px; }
+  .description { font-size: 16px; }
+  .narrative { max-width: 520px; }
+  .profileNote { margin-top: 28px; padding-top: 24px; max-width: none; }
+  .timelineLabel { margin-top: 0; }
+  .metrics { gap: 10px; }
+  .metrics strong { font-size: 29px; }
 }

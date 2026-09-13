@@ -1,22 +1,18 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  padding: 100px 0;
-}
-
-.wrapper {
-  display: flex;
-  justify-content: center;
-  padding: 50px 20px 0 20px;
-}
-
-.inner {
-  flex: 1;
-  max-width: var(--max-width);
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  padding: 0 10px;
-  gap: 10px;
-}
+.container { width: min(var(--max-width), calc(100% - 80px)); margin: 0 auto; padding: 104px 0; border-top: 1px solid var(--line); }
+.heading { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 36px; gap: 28px; }
+.eyebrow { display: block; margin-bottom: 20px; font: 10px/1.5 "Courier New", monospace; letter-spacing: .13em; color: var(--muted); }
+.heading h2 { font-size: clamp(26px, 3.2vw, 40px); letter-spacing: -.05em; font-weight: 600; }
+.heading p { font-size: 13px; line-height: 1.8; color: var(--muted); }
+.links { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.link { display: flex; align-items: center; gap: 22px; padding: 31px; border: 1px solid var(--line); border-radius: 14px; background: #ffffff60; transition: background .25s, transform .25s; }
+.link:hover { background: #eff4e5; transform: translateY(-4px); }
+.icon { flex: 0 0 48px; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: #e9ece4; }
+.icon svg { width: 25px; height: 25px; }
+.velog { background: #dff0e5; color: #24885c; font: italic bold 31px Georgia, serif; }
+.linkBody { display: flex; flex-direction: column; }
+.linkBody strong { font-size: 22px; letter-spacing: -.04em; font-weight: 600; }
+.linkBody > span { font-size: 12px; color: var(--muted); margin: 5px 0 9px; }
+.linkBody small { font: 10px/1.5 "Courier New", monospace; color: #92958b; }
+.arrow { margin-left: auto; align-self: flex-start; font-size: 24px; transition: transform .25s; }
+.link:hover .arrow { transform: translate(3px, -3px); }
+@media (max-width: 767px) { .container { width: calc(100% - 48px); padding: 72px 0; } .heading { display: block; margin-bottom: 26px; } .heading p { margin-top: 17px; } .heading p br { display: none; } .links { grid-template-columns: 1fr; gap: 14px; } .link { padding: 24px; gap: 16px; } .linkBody strong { font-size: 21px; } }

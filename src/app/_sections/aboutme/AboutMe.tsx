@@ -2,7 +2,6 @@
 
 import Accordion, { type AccordionItem } from "./components/accordion/Accordion";
 import Timeline from "./components/timeline/Timeline";
-import Title from "@/app/_components/title/Title";
 import style from "./AboutMe.module.scss";
 
 export interface Data {
@@ -25,7 +24,7 @@ const internshipItems: AccordionItem[] = [
       "Lighthouse 점검 결과 70점대에 머무르던 성능 지표를 분석·개선하여 90점대로 향상",
       "최상위 컴포넌트의 불필요한 구독 구조를 개선해 전체 리렌더링 감소",
       "React Query 기반 캐싱 구조를 적용해 API 중복 요청을 줄이고, 약 300ms의 화면 표시 속도 개선",
-      "약 1만 줄 규모의 Dead Code를 정리해 코드베이스의 가독성을 높이고, 이후 유지보수 부담을 감소시켰습니다.",
+      "약 1만 줄 규모의 Dead Code를 정리해 코드베이스의 가독성을 높이고, 이후 유지보수 부담을 감소",
     ],
   },
   {
@@ -45,37 +44,65 @@ const internshipItems: AccordionItem[] = [
 ];
 
 export default function AboutMe({ company }: { company: string | string[] | undefined }) {
+  const companyName = Array.isArray(company) ? company.join(", ") : company;
   const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const formattedDate = `${year}.${month}`;
-
-  const data: Data[] = [
-    { title: "출생", date: "2000.03" },
-    { title: "영천고등학교 졸업", date: "2019.02", content: <p>과학중점 고등학교</p> },
-    { title: "정보처리기사 취득", date: "2024.09" },
+  const formattedDate = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, "0")}`;
+  const experience: Data[] = [
+    ...(companyName ? [{ title: `${companyName} 입사 지원`, date: formattedDate }] : []),
+    {
+      title: "딥세일즈",
+      date: "2025.04 — 2025.10",
+      content: (
+        <>
+          <p className={style.role}>프론트엔드 개발 인턴</p>
+          <p className={style.experienceIntro}>
+            디자인 시스템부터 성능 최적화까지, 실제 서비스의 경험과 완성도를 개선했습니다.
+          </p>
+          <div className={style.metrics}>
+            <div><strong>90<span>점대</span></strong><p>Lighthouse 성능 · 70점대에서 개선</p></div>
+            <div><strong>300<span>ms</span></strong><p>화면 표시 시간 약 300ms 단축</p></div>
+            <div><strong>60<span>+</span></strong><p>QA 이슈 해결</p></div>
+          </div>
+          <Accordion items={internshipItems} />
+        </>
+      ),
+    },
     {
       title: "국립공주대학교 졸업",
       date: "2025.02",
       content: <p>컴퓨터공학부 소프트웨어전공</p>,
     },
+    { title: "정보처리기사 취득", date: "2024.09" },
     {
-      title: "딥세일즈 인턴",
-      date: "2025.04 ~ 2025.10",
-      content: <Accordion items={internshipItems} />,
+      title: "영천고등학교 졸업",
+      date: "2019.02",
+      content: <p>과학중점 고등학교</p>,
     },
-    ...(company ? [{ title: company + " 입사 지원", date: formattedDate }] : []),
   ];
 
-  data.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
   return (
-    <section id="AboutMe" className={style.container}>
-      <Title title="AboutMe" />
+    <section id="AboutMe" className={style.container} aria-labelledby="about-title">
       <div className={style.wrapper}>
-        {data.map((v, i) => (
-          <Timeline key={i} data={v} isEnd={i === data.length - 1} />
-        ))}
+        <div className={style.introduction} data-reveal>
+          <p className={style.kicker}>02 — ABOUT ME</p>
+          <h2 id="about-title">화면 너머의<br />경험을 생각합니다<span>.</span></h2>
+          <p className={style.description}>
+            사용자가 느끼는 작은 불편에서 시작해,<br /> 더 나은 인터페이스를 만듭니다.
+          </p>
+          <p className={style.narrative}>
+            실제 서비스를 개발하며 컴포넌트의 재사용성, 렌더링 성능, 그리고 팀이 함께 관리할 수 있는 코드의 중요성을 배웠습니다. 보기 좋은 화면에 편안한 사용 경험을 더하는 개발을 지향합니다.
+          </p>
+          <div className={style.profileNote}>
+            <span className={style.noteIcon} aria-hidden="true">↗</span>
+            <div><strong>배우고, 만들고, 개선합니다.</strong><p>2000.03 출생 · 소프트웨어 전공</p></div>
+          </div>
+        </div>
+        <div className={style.timeline}>
+          <p className={style.timelineLabel}>EXPERIENCE & EDUCATION</p>
+          {experience.map((item, index) => (
+            <Timeline key={`${item.title}-${item.date}`} data={item} isEnd={index === experience.length - 1} />
+          ))}
+        </div>
       </div>
     </section>
   );

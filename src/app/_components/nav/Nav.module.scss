@@ -1,154 +1,35 @@
-@use "@/app/_styles/mixins.scss" as m;
-@use "@/app/_styles/variables.scss" as v;
-
-.container {
-  width: 100%;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  height: #{v.$nav-height};
-  transition: transform 0.3s ease;
-  &.hide {
-    transform: translateY(-100%);
-  }
-  &.show {
-    transform: translateY(0);
-  }
-  z-index: #{v.$z-nav};
-}
-
-.navBG {
-  background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5) 90%, rgba(255, 255, 255, 0) 100%);
-  @media (prefers-color-scheme: dark) {
-    background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5) 90%, rgba(0, 0, 0, 0) 100%);
-  }
-}
-
-.navWraper {
-  @include m.wd;
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 24px;
-  position: relative;
-}
-
-.logo {
-  font-size: 24px;
-  line-height: 32px;
-  cursor: pointer;
-}
-
-.ul {
-  list-style: none;
-  display: flex;
-  gap: 10px;
-  @media #{v.$mobile} {
-    flex-direction: column;
-    position: absolute;
-    top: #{v.$nav-height};
-    right: 0;
-    transition: all 0.3s;
-    overflow: hidden;
-
-    &.show {
-      opacity: 1;
-      height: 200px;
-    }
-    &.hide {
-      opacity: 0;
-      height: 0;
-    }
-  }
-}
-
-.li {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 32px;
-  padding: 0 16px;
-  cursor: pointer;
-  color: var(--text-color-opacity-80p);
-  &:hover {
-    color: var(--text-color);
-  }
-  @media #{v.$mobile} {
-    padding-right: 6px;
-    text-align: right;
-    text-shadow:
-      2px 2px 2px var(--bg-color),
-      2px -2px 2px var(--bg-color),
-      -2px 2px 2px var(--bg-color),
-      -2px -2px 2px var(--bg-color),
-      1px 1px 0 var(--bg-color),
-      -1px 1px 0 var(--bg-color),
-      1px -1px 0 var(--bg-color),
-      -1px -1px 0 var(--bg-color);
-  }
-}
-
-.menuBtn {
-  height: 32px;
-  width: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  cursor: pointer;
-}
-.lineBox {
-  position: relative;
-  height: 16px;
-  width: 32px;
-}
-
-@mixin line {
-  width: 100%;
-  border-radius: 1.5px;
-  height: 2px;
-  background-color: var(--text-color-opacity-80p);
-  position: absolute;
-  left: 0;
-  transition: all 0.3s ease;
-  &.open {
-    @content;
-  }
-}
-.top {
-  top: 0;
-  @include line {
-    transform: rotate(45deg);
-    top: 50%;
-  }
-}
-.mid {
-  top: 45%;
-  @include line {
-    opacity: 0;
-  }
-}
-.bot {
-  bottom: 0;
-  @include line {
-    transform: rotate(135deg);
-    top: 50%;
-  }
-}
-
-.up {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-  border-radius: 50%;
-  border: none;
-  background-color: var(--text-color-opacity-10p);
-  fill: var(--text-color-opacity-50p);
-  z-index: #{v.$z-up};
-  cursor: pointer;
-  &:hover {
-    background-color: var(--text-color-opacity-20p);
-    fill: var(--text-color-opacity-80p);
-  }
+.container { position: fixed; top: 0; left: 0; right: 0; z-index: 5; background: #f7f8f4eb; backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
+.inner { width: min(var(--max-width), calc(100% - 80px)); height: 82px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.logo { font-size: 34px; line-height: 1; font-weight: 800; letter-spacing: -.09em; display: flex; align-items: center; gap: 4px; }
+.logo > span { font-size: 26px; color: #7ea136; display: inline-block; transition: transform .5s; }
+.logo:hover > span { transform: rotate(90deg); }
+.links { list-style: none; display: flex; align-items: center; gap: 32px; font-size: 12px; }
+.links a { color: #73766e; display: block; position: relative; padding: 10px 0; transition: color .2s; }
+.links a[aria-current], .links a:hover { color: #20211f; }
+.links a[aria-current]::after { content: ""; position: absolute; height: 4px; width: 4px; background: #20211f; border-radius: 50%; bottom: 0; left: calc(50% - 2px); }
+.links a > span, .links .mobileContact { display: none; }
+.contact { padding: 10px 17px; border: 1px solid var(--line); border-radius: 7px; font-size: 11px; display: flex; align-items: center; gap: 28px; transition: background .2s, border-color .2s; }
+.contact > span { font-size: 17px; }
+.contact:hover { background: var(--accent); border-color: var(--accent); }
+.toggle { display: none; }
+.progress { position: absolute; bottom: -1px; left: 0; width: 100%; height: 2px; background: #9ac64b; transform: scaleX(0); transform-origin: left; }
+.backToTop { position: fixed; bottom: 24px; right: 24px; z-index: 4; height: 44px; width: 44px; background: #f7f8f4ec; border: 1px solid var(--line); border-radius: 50%; font-size: 20px; transition: background .2s; &:hover { background: var(--accent); } }
+.backdrop { display: none; }
+@media (max-width: 767px) {
+  .inner { width: calc(100% - 48px); height: 72px; }
+  .logo { font-size: 30px; }
+  .logo > span { font-size: 23px; }
+  .contact { margin-left: auto; margin-right: 20px; padding: 7px 12px; gap: 14px; }
+  .toggle { display: flex; flex-direction: column; justify-content: center; gap: 6px; width: 34px; height: 40px; border: 0; background: transparent; }
+  .toggle span { width: 22px; height: 1.5px; background: #20211f; transition: transform .2s; }
+  .toggle.open span:first-child { transform: translateY(3.75px) rotate(45deg); }
+  .toggle.open span:last-child { transform: translateY(-3.75px) rotate(-45deg); }
+  .links { position: absolute; left: 0; right: 0; top: 72px; background: #f7f8f4; padding: 18px 24px 24px; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; align-items: stretch; gap: 0; visibility: hidden; opacity: 0; transform: translateY(-8px); transition: opacity .2s, transform .2s, visibility .2s; max-height: calc(100dvh - 72px); overflow-y: auto; }
+  .links.open { visibility: visible; opacity: 1; transform: translateY(0); }
+  .links a { font-size: 24px; letter-spacing: -.04em; padding: 15px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; }
+  .links a > span, .links .mobileContact { display: block; }
+  .links a[aria-current]::after { display: none; }
+  .links a[aria-current] { color: #577b1a; }
+  .backdrop { display: block; position: fixed; inset: 72px 0 0; background: #20211f44; z-index: 4; border: 0; }
+  .backToTop { width: 40px; height: 40px; right: 16px; bottom: 16px; }
 }

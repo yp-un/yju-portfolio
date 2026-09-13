@@ -9,8 +9,7 @@ import {
 	useId,
 	useState,
 } from "react";
-import getReadme from "@/app/_services/getReadme";
-import { Project } from "@/app/_types/Project";
+import type { Project } from "@/app/_types/Project";
 import style from "./Markdown.module.scss";
 
 let mermaidModulePromise: Promise<typeof import("mermaid")> | null = null;
@@ -50,13 +49,10 @@ function MermaidCode({
 		async function renderDiagram() {
 			try {
 				const mermaid = await getMermaid();
-				const isDarkMode = window.matchMedia(
-					"(prefers-color-scheme: dark)",
-				).matches;
-
 				mermaid.default.initialize({
 					startOnLoad: false,
-					theme: isDarkMode ? "dark" : "default",
+					theme: "neutral",
+					securityLevel: "strict",
 				});
 
 				const { svg: nextSvg } = await mermaid.default.render(
@@ -107,21 +103,49 @@ export default function Markdown({
 }: {
 	projectKey: Project["key"] | undefined;
 }) {
-	const [text, setText] = useState<string | null>();
+	const [text, setText] = useState<string | null>(null);
+	const [error, setError] = useState(false);
+	const [attempt, setAttempt] = useState(0);
 
 	useEffect(() => {
+		let active = true;
+		const controller = new AbortController();
+		setText(null);
+		setError(false);
+
 		async function fetchReadme() {
-			if (!projectKey) return;
-			const readmeText = await getReadme(projectKey);
-			setText(readmeText ?? "");
+			try {
+				if (!projectKey) throw new Error("Missing project key");
+				const response = await fetch(`/${projectKey}/description.md`, { signal: controller.signal });
+				if (!response.ok) throw new Error("Project description unavailable");
+				const readmeText = await response.text();
+				if (!readmeText.trim()) throw new Error("Project description is empty");
+				if (active) {
+					setText(readmeText
+						.replace(/^# .+\r?\n/, "")
+						.replaceAll("https://raw.githubusercontent.com/yp-un/yju-portfolio/main/public/", "/"));
+				}
+			} catch {
+				if (active) setError(true);
+			}
 		}
 
 		fetchReadme();
-	}, [projectKey]);
+		return () => { active = false; controller.abort(); };
+	}, [projectKey, attempt]);
+
+	if (error) {
+		return (
+			<div className={style.error} role="status">
+				<p>프로젝트 설명을 불러오지 못했습니다.</p>
+				<button type="button" onClick={() => setAttempt((value) => value + 1)}>다시 불러오기 ↻</button>
+			</div>
+		);
+	}
 
 	if (text == null) {
 		return (
-			<div className={style.skeleton}>
+			<div className={style.skeleton} aria-label="프로젝트 설명을 불러오는 중" role="status">
 				<div className={style.title} />
 				{Array.from({ length: 2 }, (_, idx) => (
 					<Fragment key={idx}>
