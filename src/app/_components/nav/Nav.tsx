@@ -47,7 +47,7 @@ export default function Nav() {
       <div className={style.inner}>
         <Link className={style.brand} href="/" onClick={closeMenu} aria-label="양정운 포트폴리오 홈">
           <span className={style.name}>양정운</span>
-          <span className={style.role}>Frontend developer</span>
+          <span className={style.role}>Developer</span>
         </Link>
 
         <button

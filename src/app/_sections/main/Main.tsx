@@ -37,7 +37,7 @@ export default function Main() {
     <section id="Home" className={style.container} aria-labelledby="intro-heading">
       <div className={style.inner}>
         <div className={style.intro}>
-          <p className={style.identity}>프론트엔드 개발자 양정운</p>
+          <p className={style.identity}>개발자 양정운</p>
           <h1 id="intro-heading">사용하기 좋은<br />화면을 만듭니다.</h1>
           <p className={style.description}>
             반응형 UI부터 디자인 시스템, 배포까지.<br />

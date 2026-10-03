@@ -70,7 +70,7 @@ export default function AboutMe({ company }: { company: string | string[] | unde
       <div className={style.wrapper}>
         <header className={style.header}>
           <h2 id="experience-heading">실제 서비스에서 쌓은 경험</h2>
-          <p>화면 구현을 넘어 성능과 유지보수까지 살피며,<br className={style.desktopBreak} /> 팀이 함께 개선할 수 있는 프론트엔드를 만듭니다.</p>
+          <p>화면 구현을 넘어 성능과 유지보수까지 살피며,<br className={style.desktopBreak} /> 팀이 함께 개선할 수 있는 서비스를 만듭니다.</p>
         </header>
 
         <article className={style.experience}>
