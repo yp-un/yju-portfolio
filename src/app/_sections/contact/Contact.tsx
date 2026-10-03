@@ -36,7 +36,7 @@ export default function Contact() {
               <p className={style.status} role="status">{copyMessage}</p>
             </div>
           )}
-          {phone && <a className={style.phone} href={`tel:${phone.replace(/[^+\d]/g, "")}`}><span>전화</span>{phone}</a>}
+          {/* {phone && <a className={style.phone} href={`tel:${phone.replace(/[^+\d]/g, "")}`}><span>전화</span>{phone}</a>} */}
           {!email && !phone && <a className={style.send} href="https://github.com/yp-un" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기</a>}
         </div>
       </div>
