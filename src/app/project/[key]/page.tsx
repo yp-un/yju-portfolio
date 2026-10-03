@@ -9,7 +9,7 @@ interface Props {
 }
 
 export function generateStaticParams() {
-	return projects.map((project) => ({ id: project.key }));
+	return projects.map((project) => ({ key: project.key }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 			title,
 			url: `${process.env.NEXT_PUBLIC_BASE_URL}/project/${key}`,
 			images: {
-				url: `${process.env.NEXT_PUBLIC_BASE_URL}/${key}/1.webp`,
+				url: `${process.env.NEXT_PUBLIC_BASE_URL}/${key}/images/light/1.webp`,
 				alt: title,
 			},
 		},

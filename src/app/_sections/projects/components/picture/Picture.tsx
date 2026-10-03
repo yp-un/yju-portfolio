@@ -11,12 +11,12 @@ export default function Picture({
 	return (
 		<picture className={style.picture}>
 			<source
-				srcSet={`https://raw.githubusercontent.com/yp-un/yju-portfolio/main/public/${project.key}/images/dark/${idx}.webp`}
+				srcSet={`/${project.key}/images/dark/${idx}.webp`}
 				media="(prefers-color-scheme: dark)"
 			/>
 			<img
 				className={style.img}
-				src={`https://raw.githubusercontent.com/yp-un/yju-portfolio/main/public/${project.key}/images/light/${idx}.webp`}
+				src={`/${project.key}/images/light/${idx}.webp`}
 				alt={`${project.title} 이미지 ${idx}`}
 			/>
 		</picture>

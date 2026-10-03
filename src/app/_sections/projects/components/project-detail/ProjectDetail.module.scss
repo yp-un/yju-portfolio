@@ -3,21 +3,10 @@
   flex-direction: column;
 }
 
-.iframeBox {
-  height: 400px;
-  width: 100%;
-  padding: 30px;
-
-  iframe {
-    height: 100%;
-    width: 100%;
-    border-style: none;
-  }
-}
-
 .img {
   position: relative;
-  height: 400px;
+  aspect-ratio: 1.6;
+  max-height: 440px;
 
   img {
     padding: 30px;
@@ -39,6 +28,9 @@
   align-items: center;
   justify-content: space-between;
   margin: 10px 10px 0 10px;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: 14px;
 }
 
 .flex {
@@ -90,8 +82,14 @@
 }
 
 .serviceLink {
-  color: blue;
+  color: var(--portfolio-accent);
+  overflow-wrap: anywhere;
+  word-break: break-word;
   text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .img img { padding: 12px; }
 }
 
 .link {

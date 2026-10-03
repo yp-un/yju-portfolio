@@ -1,83 +1,46 @@
-@use "@/app/_styles/variables.scss" as v;
-
-.container {
-  @media #{v.$desktop} {
-    .inner::after {
-      content: "";
-      flex: 1;
-    }
-    &:nth-child(odd) {
-      .content {
-        order: -1;
-        text-align: right;
-      }
-    }
-    &:nth-child(even) {
-      .content {
-        order: 2;
-      }
-      .lineContaier {
-        order: 1;
-      }
-    }
-  }
+.item {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 24px;
+  padding-bottom: 24px;
 }
 
-.inner {
-  display: flex;
-  &.active .dot {
-    background-color: var(--text-color);
-  }
-  &.active .content {
-    opacity: 1;
-    top: 0px;
-  }
+.last {
+  padding-bottom: 0;
+}
+
+.date {
+  padding-top: 2px;
+  color: var(--portfolio-muted);
+  font-size: 14px;
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
 }
 
 .content {
-  flex: 1;
-  margin-bottom: 50px;
-  opacity: 0;
-  position: relative;
-  top: 10px;
-  transition: all 0.5s;
-  h3 {
-    font-size: 36px;
-    @media #{v.$mobile} {
-      font-size: 24px;
-    }
-  }
-  small {
-    color: var(--text-color-opacity-80p);
+  min-width: 0;
+
+  h4 {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: -0.015em;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
   }
 }
 
-.contentDescription {
-  padding-top: 15px;
+.description {
+  margin-top: 6px;
+  color: var(--portfolio-muted);
+  font-size: 14px;
+  line-height: 1.7;
+  word-break: keep-all;
+}
 
-  > p {
-    white-space: pre-line;
+@media (max-width: 420px) {
+  .item {
+    grid-template-columns: 68px minmax(0, 1fr);
+    gap: 16px;
   }
-}
-
-.lineContaier {
-  width: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.dot {
-  margin: 15px;
-  width: 15px;
-  height: 15px;
-  background-color: var(--text-color-opacity-20p);
-  border-radius: 50%;
-  transition: background-color 0.3s;
-}
-.line {
-  flex: 1;
-  width: 3px;
-  background-color: var(--text-color-opacity-20p);
-  // background: linear-gradient(to bottom, blue 10%, var(--text-color));
-  // background-attachment: fixed;
 }

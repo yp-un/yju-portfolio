@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Project } from "@/app/_types/Project";
@@ -18,15 +17,7 @@ interface Props {
 export default function ProjectDetail({ project }: Props) {
 	return (
 		<div className={style.container}>
-			{project.key === "portfolio" ? (
-				<div className={style.iframeBox}>
-					<iframe
-						src={process.env.NEXT_PUBLIC_BASE_URL!}
-						title={`${project.title} 미리보기`}
-					/>
-				</div>
-			) : (
-				<div>
+			<div>
 					<Swiper
 						slidesPerView={1}
 						loop={project.imgCnt > 1}
@@ -42,8 +33,7 @@ export default function ProjectDetail({ project }: Props) {
 							</SwiperSlide>
 						))}
 					</Swiper>
-				</div>
-			)}
+			</div>
 
 			<div className={style.markdown}>
 				<Markdown projectKey={project.key} />

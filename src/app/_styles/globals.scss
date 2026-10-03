@@ -1,60 +1,96 @@
-:root {
-  --max-width: 1024px;
+@font-face {
+  font-family: "SUIT";
+  src: url("/fonts/SUIT-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
-
-$opacities: (
-  10: 0.1,
-  20: 0.2,
-  50: 0.5,
-  80: 0.8,
-  90: 0.9,
-);
-
+@font-face {
+  font-family: "Manrope";
+  src: url("/fonts/Manrope-Variable.ttf") format("truetype");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+$opacities: (10: 0.1, 20: 0.2, 50: 0.5, 80: 0.8, 90: 0.9);
 :root {
-  --bg-color: white;
-  --text-color: black;
+  color-scheme: light dark;
+  --max-width: 1200px;
+  --font-display: "Manrope", "SUIT", sans-serif;
+  --font-manrope: "Manrope", "SUIT", sans-serif;
+  --font-suit: "SUIT", "Apple SD Gothic Neo", sans-serif;
+  --bg-color: #ffffff;
+  --text-color: #17243b;
+  --portfolio-ink: #17243b;
+  --portfolio-muted: #59677d;
+  --portfolio-surface: #f2f5fa;
+  --portfolio-accent: #3158d5;
+  --portfolio-lavender: #e3e8ff;
+  --portfolio-line: #dbe2ec;
+  --portfolio-button: #3158d5;
+  --portfolio-button-text: #ffffff;
   @each $key, $opacity in $opacities {
-    --bg-color-opacity-#{$key}p: rgba(220, 220, 220, #{$opacity});
-    --text-color-opacity-#{$key}p: rgba(20, 20, 20, #{$opacity});
+    --bg-color-opacity-#{$key}p: rgba(255, 255, 255, #{$opacity});
+    --text-color-opacity-#{$key}p: rgba(23, 36, 59, #{$opacity});
   }
 }
-
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-color: black;
-    --text-color: white;
+    --bg-color: #101d31;
+    --text-color: #edf2fc;
+    --portfolio-ink: #edf2fc;
+    --portfolio-muted: #acbad0;
+    --portfolio-surface: #17263e;
+    --portfolio-accent: #a2b5ff;
+    --portfolio-lavender: #263957;
+    --portfolio-line: #34445e;
+    --portfolio-button: #b5c4ff;
+    --portfolio-button-text: #101d31;
     @each $key, $opacity in $opacities {
-      --bg-color-opacity-#{$key}p: rgba(20, 20, 20, #{$opacity});
-      --text-color-opacity-#{$key}p: rgba(220, 220, 220, #{$opacity});
+      --bg-color-opacity-#{$key}p: rgba(16, 29, 49, #{$opacity});
+      --text-color-opacity-#{$key}p: rgba(237, 242, 252, #{$opacity});
     }
   }
 }
-
-html {
-  scroll-behavior: smooth;
-}
+* { box-sizing: border-box; padding: 0; margin: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 104px; }
 body {
-  // font-family: Arial, Helvetica, sans-serif;
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
-
   background: var(--bg-color);
-  color: var(--text-color);
+  color: var(--portfolio-ink);
+  font-family: "SUIT", "Apple SD Gothic Neo", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+button { color: inherit; }
+img, svg { vertical-align: middle; }
+button, a, summary { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid var(--portfolio-accent); outline-offset: 5px; }
+::selection { background: var(--portfolio-lavender); color: var(--portfolio-ink); }
+.skipLink {
+  position: fixed;
+  left: 24px;
+  top: 12px;
+  padding: 12px 20px;
+  background: var(--bg-color);
+  border: 1px solid var(--portfolio-line);
+  border-radius: 8px;
+  z-index: 20;
+  transform: translateY(-160%);
+  &:focus { transform: translateY(0); }
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
+@media (max-width: 760px) {
+  html { scroll-padding-top: 92px; }
 }
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

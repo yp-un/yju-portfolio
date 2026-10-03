@@ -4,6 +4,7 @@ import AboutMe from "./_sections/aboutme/AboutMe";
 import Skills from "./_sections/skills/Skills";
 import Archiving from "./_sections/archiving/Archiving";
 import Projects from "./_sections/projects/Projects";
+import Contact from "./_sections/contact/Contact";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
@@ -14,10 +15,11 @@ export default function Page(props: { searchParams: SearchParams }) {
   return (
     <>
       <Main />
+      <Projects />
       <AboutMe company={company} />
       <Skills />
       <Archiving />
-      <Projects />
+      <Contact />
     </>
   );
 }

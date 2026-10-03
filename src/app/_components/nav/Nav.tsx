@@ -1,81 +1,80 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import style from "./Nav.module.scss";
-import { useScrollPosition } from "@/app/_hooks/useScrollPosition";
-import useIsMobile from "@/app/_hooks/useIsMobile";
+import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
-import { menu } from "@/app/_types/Menu";
+import style from "./Nav.module.scss";
+
+const navigationLinks = [
+  { label: "프로젝트", href: "/#Projects" },
+  { label: "소개", href: "/#AboutMe" },
+  { label: "기술", href: "/#Skills" },
+  { label: "기록", href: "/#Archiving" },
+  { label: "연락하기", href: "/#Contact" },
+] as const;
 
 export default function Nav() {
-  const { currentY, previousY } = useScrollPosition();
-  const isMobile = useIsMobile();
-  const [showMenu, setShowMenu] = useState(false);
-  const timer = useRef<NodeJS.Timeout | null>(null);
-  const [showUp, setShowUp] = useState(false);
-  const [showUpHover, setShowUpHover] = useState(false);
-
-  const onClickMenu = () => {
-    setShowMenu(!showMenu);
-  };
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuId = useId();
 
   useEffect(() => {
-    if (currentY < 100) {
-      if (showUp) setShowUp(false);
-      if (timer.current) clearTimeout(timer.current);
-      return;
-    }
-    if (showUpHover) {
-      if (timer.current) clearTimeout(timer.current);
-      return;
-    }
-    if (timer.current) clearTimeout(timer.current);
-    setShowUp(true);
-    timer.current = setTimeout(() => {
-      setShowUp(false);
-      timer.current = null;
-    }, 2000);
-  }, [currentY, showUpHover]);
+    if (!isMenuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setIsMenuOpen(false);
+      menuButtonRef.current?.focus();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    const desktopMedia = window.matchMedia("(min-width: 761px)");
+    const closeOnDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches) setIsMenuOpen(false);
+    };
+
+    desktopMedia.addEventListener("change", closeOnDesktop);
+    return () => desktopMedia.removeEventListener("change", closeOnDesktop);
+  }, []);
+
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <>
-      <div
-        className={`${style.container}
-       ${currentY < previousY || currentY < 72 ? style.show : style.hide} ${currentY > 172 ? style.navBG : null}`}
-      >
-        <div className={style.navWraper}>
-          <a href={process.env.NEXT_PUBLIC_BASE_URL as string} className={style.logo}>{`YJU's Portfolio`}</a>
-          <>
-            <ul className={`${style.ul} ${showMenu ? style.show : style.hide}`}>
-              {menu.map((v, i) => (
-                <li key={i} className={style.li}>
-                  <Link href={`/#${v}`}>{v}</Link>
-                </li>
-              ))}
-            </ul>
-            {isMobile ? (
-              <div className={style.menuBtn} onClick={onClickMenu}>
-                <div className={style.lineBox}>
-                  {["top", "mid", "bot"].map((v, i) => (
-                    <div key={i} className={`${style[v]} ${showMenu ? style.open : ""}`}></div>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-          </>
-        </div>
+    <div className={style.container}>
+      <div className={style.inner}>
+        <Link className={style.brand} href="/" onClick={closeMenu} aria-label="양정운 포트폴리오 홈">
+          <span className={style.name}>양정운</span>
+          <span className={style.role}>Frontend developer</span>
+        </Link>
+
+        <button
+          ref={menuButtonRef}
+          className={style.menuButton}
+          type="button"
+          aria-label={isMenuOpen ? "메뉴 닫기" : "메뉴 열기"}
+          aria-expanded={isMenuOpen}
+          aria-controls={menuId}
+          onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
+        >
+          <span className={`${style.menuIcon} ${isMenuOpen ? style.menuIconOpen : ""}`} aria-hidden="true">
+            <span />
+            <span />
+          </span>
+        </button>
+
+        <ul id={menuId} className={`${style.links} ${isMenuOpen ? style.linksOpen : ""}`}>
+          {navigationLinks.map(({ label, href }) => (
+            <li key={href}>
+              <Link className={href === "/#Contact" ? style.contactLink : style.sectionLink} href={href} onClick={closeMenu}>
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
-      <button
-        style={showUp ? { display: "block" } : { display: "none" }}
-        className={style.up}
-        onClick={() => window.scrollTo(0, 0)}
-        onMouseEnter={() => setShowUpHover(true)}
-        onMouseLeave={() => setShowUpHover(false)}
-      >
-        <svg height={30} width={30} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-          <path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z" />
-        </svg>
-      </button>
-    </>
+    </div>
   );
 }

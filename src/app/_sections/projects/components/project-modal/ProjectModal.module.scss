@@ -2,55 +2,101 @@
 
 .container {
   position: fixed;
-  top: 0;
-  width: 100dvw;
-  height: 100dvh;
-  overflow-y: auto;
-  background-color: var(--bg-color-opacity-50p);
+  inset: 0;
   z-index: #{v.$z-modal};
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: rgba(23, 36, 59, 0.52);
 }
 
 .inner {
-  background-color: var(--bg-color);
-  border-radius: 10px;
+  position: relative;
   display: flex;
   flex-direction: column;
-  padding: 15px;
-  position: relative;
+  width: min(900px, calc(100% - 48px));
+  margin: 72px auto;
+  color: var(--portfolio-ink, #17243b);
+  background: var(--portfolio-surface, #fff);
+  border: 1px solid var(--portfolio-line, #dde3ed);
+  border-radius: 18px;
+  box-shadow: 0 24px 80px rgba(23, 36, 59, 0.2);
+  box-sizing: border-box;
+}
 
-  @media #{v.$desktop} {
-    box-shadow: 0 0 1px var(--text-color);
-    margin: 50px calc((100% - 700px) / 2);
-  }
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px 16px 28px;
+  background: var(--portfolio-surface, #fff);
+  border-bottom: 1px solid var(--portfolio-line, #dde3ed);
+  border-radius: 17px 17px 0 0;
+}
 
-  @media #{v.$mobile} {
-    margin: 0;
-    min-height: 100dvh;
-  }
+.title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+  overflow-wrap: anywhere;
 }
 
 .close {
-  z-index: #{v.$z-modal};
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  width: 30px;
-  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
-  border-radius: 50%;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: var(--portfolio-ink, #17243b);
   background: transparent;
+  border: 1px solid var(--portfolio-line, #dde3ed);
+  border-radius: 8px;
   cursor: pointer;
 
   svg {
-    fill: var(--text-color);
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
   }
 
   &:hover {
-    background-color: var(--text-color-opacity-20p);
+    background: var(--portfolio-line, #dde3ed);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--portfolio-accent, #3158d5);
+    outline-offset: 3px;
+  }
+}
+
+.document {
+  min-width: 0;
+  padding: 16px 18px 28px;
+}
+
+@media (max-width: 600px) {
+  .inner {
+    width: calc(100% - 24px);
+    margin: 20px auto;
+    border-radius: 12px;
+  }
+
+  .header {
+    padding: 12px 12px 12px 18px;
+    border-radius: 11px 11px 0 0;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .document {
+    padding: 10px 6px 20px;
   }
 }

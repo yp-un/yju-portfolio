@@ -57,12 +57,13 @@ export default function RootLayout({
 				</script>
 			</head>
 			<body>
+				<a className="skipLink" href="#main-content">본문으로 바로가기</a>
 				<header>
 					<nav>
 						<Nav />
 					</nav>
 				</header>
-				<main>{children}</main>
+				<main id="main-content" tabIndex={-1}>{children}</main>
 				<footer>
 					<Footer />
 				</footer>

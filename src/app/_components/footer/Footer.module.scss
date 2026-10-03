@@ -1,10 +1,2 @@
-.container {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-top: solid 1px rgb(113, 118, 123);
-  span {
-    font-size: 12px;
-  }
-}
+.container { border-top: 1px solid var(--portfolio-line); }
+.inner { max-width: var(--max-width); padding: 28px clamp(24px, 4vw, 48px); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; color: var(--portfolio-muted); font-size: 12px; a { padding: 8px 0 8px 16px; } }
