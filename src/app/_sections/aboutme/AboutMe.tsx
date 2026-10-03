@@ -9,6 +9,30 @@ export interface Data {
   content?: ReactNode;
 }
 
+const nepirityItems: AccordionItem[] = [
+  {
+    title: "앱 개발 및 유지보수",
+    descriptions: [
+      "React Native 기반 모바일 앱 개발 및 유지보수",
+      "Google Play Store 및 Apple App Store 앱 배포 및 운영",
+    ],
+  },
+  {
+    title: "AI Agent 개발",
+    descriptions: [
+      "LLM 기반 AI Agent 서비스 개발",
+      "AI Agent 플랫폼 및 외부 서비스 연동",
+    ],
+  },
+  {
+    title: "바이브코딩 교육",
+    descriptions: [
+      "비전공자 대상 AI 코딩 도구를 활용한 개발 교육",
+      "Linux 및 Git 기초 교육",
+    ],
+  },
+];
+
 const internshipItems: AccordionItem[] = [
   {
     title: "성능 최적화",
@@ -72,6 +96,18 @@ export default function AboutMe({ company }: { company: string | string[] | unde
           <h2 id="experience-heading">실제 서비스에서 쌓은 경험</h2>
           <p>화면 구현을 넘어 성능과 유지보수까지 살피며,<br className={style.desktopBreak} /> 팀이 함께 개선할 수 있는 서비스를 만듭니다.</p>
         </header>
+
+        <article className={style.experience}>
+          <div className={style.role}>
+            <h3>㈜네피리티</h3>
+            <p>앱 개발 (인턴/수습, 팀원)</p>
+            <span>2026.07 ~ 재직 중</span>
+          </div>
+          <div className={style.work}>
+            <p className={style.workSummary}>모바일 앱 개발과 운영, AI Agent 서비스 개발, 비전공자 대상 개발 교육을 담당하고 있습니다.</p>
+            <Accordion items={nepirityItems} />
+          </div>
+        </article>
 
         <article className={style.experience}>
           <div className={style.role}>

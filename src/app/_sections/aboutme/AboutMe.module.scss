@@ -41,6 +41,10 @@
   gap: 48px;
   padding-top: 32px;
   border-top: 1px solid var(--portfolio-line);
+
+  & + & {
+    margin-top: 48px;
+  }
 }
 
 .role {
@@ -68,6 +72,13 @@
 
 .work {
   min-width: 0;
+}
+
+.workSummary {
+  margin-bottom: 24px;
+  color: var(--portfolio-muted);
+  font-size: 16px;
+  line-height: 1.75;
 }
 
 .outcomes {
